@@ -9,7 +9,9 @@ export default function ingredientsList ({ingredients}) {
   return (
     <div>
       <span>Ingredients : </span>
-        {listeOfIngredients}
+        <div className="Ingredients-info">
+            {listeOfIngredients}
+        </div>
     </div>
   )
 }

@@ -1,0 +1,7 @@
+/*ALL OUR CSS is gonna be imported here*/
+@import "fonts.css";
+@import "global.css";
+@import-normalize; /* bring in normalize.css styles */
+@import "recipe-list.css";
+@import "button.css";
+@import "ingredient.css";

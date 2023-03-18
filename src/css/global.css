@@ -1,0 +1,12 @@
+* , *:after ,*:before {
+    font-family: Oswald-test;
+}
+html , body , #root , .global-container{
+    height: 100%;
+}
+body {
+    margin: 0;
+}
+.global-container{
+    display: flex;
+}

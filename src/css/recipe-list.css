@@ -1,0 +1,20 @@
+.recipe-list{
+    display: flex;
+    flex-direction: column;
+}
+.recipe-list-container {
+    display: flex;
+    flex-direction: column;
+}
+.recipe {
+    min-height: 260px;
+    display: flex;
+    gap : 10px;
+    border : solid 2px black ;
+    border-top: 0;
+    border-left: 0;
+    padding: 10px;
+}
+.recipe-info {
+    flex: 1;
+}

@@ -1,0 +1,27 @@
+.btn {
+    border: none;
+    color: white;
+    text-align: center;
+
+}
+.btn-add {
+    background-color: dodgerblue;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+    padding: 15px 32px;
+    margin-top: 5px;
+}
+.btn-edit {
+    background-color: darkolivegreen;
+    font-size: 16px;
+    padding: 10px 17px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.btn-delete {
+    background-color: crimson;
+    font-size: 16px;
+    padding: 10px 17px;
+    border-radius: 5px;
+}
