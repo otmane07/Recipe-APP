@@ -14,7 +14,7 @@ export default function RecipeList({recipe}) {
            <div className="recipe-list">
             <div className="recipe-list-container">
                 {
-                    recipe?.map((recipe) => {
+                    recipe?.map((recipe ) => {
                         // spread operator ici donne place key and the value of the object like attr of the tag
                         // comme si on écrit <Recipe key={recipe.id} id = 0 title = "plat de poulet" .. />
                         // on peut definir une nouvelle prop recipeInfo est passe notre objet de dans

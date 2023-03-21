@@ -8,7 +8,15 @@ import RecipeEdit from "./RecipeEdit";
 export const recipeContext = React.createContext();
 const LOCAL_STORAGE = "localStorage.recipe"
 function App() {
+    const [selectedRecipeId , setSelectedRecipeId] = useState(" ")
     const [recipe, setRecipe] = useState(recipeInfo)
+
+    //get the recipe to edit from selectedRecipeId
+    // find : give a condition if true return the element how passed it
+    let selectedRecipe = recipe.find( (e) => {
+        return e.id === selectedRecipeId
+    })
+
     // j'ai besoin du state recipe dans mon use effect d'ou la définition de se dérnier dans func App
     //the first effect is for getting Local storage content
     useEffect(()=>{
@@ -31,23 +39,25 @@ function App() {
     let handelRecipeAdd = () => {
         let newRecipe = {
             id: uuidv4(),
-            title: "Plat pour test",
+            title: "Nouveau Plat",
             cookTime: 1,
-            servings: 2,
-            instructions: "Test Instruction",
+            servings: 1,
+            instructions: "",
             ingredients: [
                 {
                     id: uuidv4(),
-                    name: "test",
-                    amount: "0.5kg"
+                    name: " ",
+                    amount: " "
                 },
                 {
                     id: uuidv4(),
-                    name: "test2",
-                    amount: "2 TC"
+                    name: " ",
+                    amount: " "
                 }
             ]
         }
+        //Pour que la reccette soit automatiquement selected
+        setSelectedRecipeId(newRecipe.id)
         //Pour ce cas il accepte comme argument un array
         setRecipe([...recipe,newRecipe])
     }
@@ -56,15 +66,30 @@ function App() {
             return e.id !== idToDelete ;
         }))
     }
+    let handelRecipeEdit = (idToEdit) => {
+        setSelectedRecipeId(idToEdit)
+    }
+    let handelFromEditChange = (idToEdit,newRecipe) => {
+        // Ce que je recoit du component fils
+        // Premiérement je doit cloné le state de la liste des recipes
+        let recipeArray = [...recipe]
+        // Je dois trouver l'indice du recipe a changer dans la liste des recipes
+        let indexRecipeToEdit = recipeArray.findIndex((e)=> e.id === idToEdit)
+        recipeArray[indexRecipeToEdit] = newRecipe ;
+        setRecipe(recipeArray)
+    }
     const recipeContextValue = {
         handelRecipeAdd ,
-        handelRecipeDelete
+        handelRecipeDelete ,
+        handelRecipeEdit ,
+        handelFromEditChange,
+        selectedRecipe
     }
     return (
         <recipeContext.Provider value={recipeContextValue}>
             <div className="global-container">
-                <RecipeList recipe={recipe} />
-                <RecipeEdit />
+                <RecipeList recipe={recipe}  />
+                {selectedRecipe && <RecipeEdit /> }
             </div>
         </recipeContext.Provider>
 
@@ -80,12 +105,12 @@ const recipeInfo = [
         instructions: "1 . Prepare le poulet.2 . Servez le poulet dans une assiette. 3 . Mange le plat du poulet",
         ingredients: [
             {
-                id: 1,
+                id: 3,
                 name: "poulet",
                 amount: "0.5kg"
             },
             {
-                id: 2,
+                id: 4,
                 name: "sel",
                 amount: "1 TC"
             }

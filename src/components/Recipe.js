@@ -5,7 +5,7 @@ import {recipeContext} from './App'
 
 export default function Recipe({id,title, cookTime, servings, instructions, ingredients}) {
     let recipeContextValue = useContext(recipeContext)
-    let {handelRecipeDelete} = recipeContextValue ;
+    let {handelRecipeDelete , handelRecipeEdit} = recipeContextValue ;
     return (
         <>
             <div className="recipe">
@@ -30,7 +30,11 @@ export default function Recipe({id,title, cookTime, servings, instructions, ingr
                     </div>
                 </div>
                 <div>
-                    <button className="btn btn-edit">
+                    <button className="btn btn-edit"
+                            onClick={() => {
+                                handelRecipeEdit(id)
+                            }
+                    }>
                         Edit
                     </button>
                     <button className="btn btn-delete"
