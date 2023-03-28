@@ -1,0 +1,15 @@
+.nav-bar-list {
+    display: flex;
+    justify-content: center;
+    column-gap: 47px;
+    list-style: none;
+}
+.nav-bar-list__element {
+    text-decoration: none;
+    color: black;
+    font-family: math;
+    font-size: larger;
+}
+.nav-bar-list__element:hover{
+    color: darkcyan;
+}

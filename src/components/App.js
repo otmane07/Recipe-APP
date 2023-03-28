@@ -3,13 +3,19 @@ import RecipeList from "./RecipeList";
 import '../css/app.css'
 import {v4 as uuidv4} from 'uuid';
 import RecipeEdit from "./RecipeEdit";
+import About from "./About"
 
+import {Routes, Route, useLocation, Navigate} from "react-router-dom";
+import NavBar from "./NavBar";
+import PageNotFound from "./PageNotFound";
 
 export const recipeContext = React.createContext();
 const LOCAL_STORAGE = "localStorage.recipe"
 function App() {
     const [selectedRecipeId , setSelectedRecipeId] = useState(" ")
     const [recipe, setRecipe] = useState(recipeInfo)
+
+    let location = useLocation();
 
     //get the recipe to edit from selectedRecipeId
     // find : give a condition if true return the element how passed it
@@ -87,12 +93,17 @@ function App() {
     }
     return (
         <recipeContext.Provider value={recipeContextValue}>
+            <NavBar/>
             <div className="global-container">
-                <RecipeList recipe={recipe}  />
-                {selectedRecipe && <RecipeEdit /> }
+                <Routes>
+                    <Route path="/" element={<Navigate to="/recipe"/>}  />
+                    <Route path={"/recipe"} element={<RecipeList recipe={recipe}  />}/>
+                    <Route path={"/about/:id/:name"} element={<About />}/>
+                    <Route path={"*"} element={<PageNotFound />}/>
+                </Routes>
+                {selectedRecipe && location?.pathname === "/" && <RecipeEdit /> }
             </div>
         </recipeContext.Provider>
-
     );
 }
 // Le définire comme une variable global
